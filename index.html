@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉtoileTaxi Paris | Votre Transport Chaleureux & Agréé</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+        <script>
+            (function() {
+                emailjs.init("fD4JV_R82aa5DS3cJ"); // <-- Remplace par ton public key
+            })();
+        </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+
+        span.slider {
+        display: inline-block;
+        width: 300px;       /* largeur du slider */
+        height: 200px;      /* hauteur du slider */
+        overflow: hidden;
+        position: relative;
+        border-radius: 10px;
+        }
+
+        span.slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        span.slider img.active {
+            opacity: 1;
+        }
+            
+        /* Palette Solaire */
+        .bg-solar { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); }
+        .bg-warm-light { background: #fffdfa; }
+        .text-solar { color: #ea580c; }
+        .border-solar { border-color: #fbbf24; }
+        
+        .btn-sunny {
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            transition: all 0.3s ease;
+        }
+        .btn-sunny:hover { transform: scale(1.02); shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4); }
+        
+        #booking-form { display: none; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-warm-light text-slate-800">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-orange-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-solar rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i class="fas fa-taxi"></i>
+                </div>
+                <span class="text-2xl font-black text-slate-900 tracking-tighter">ÉtoileTaxi<span class="text-orange-500">Paris</span></span>
+            </div>
+            <a href="tel:0185790202" class="btn-sunny text-white px-6 py-2.5 rounded-full font-bold shadow-lg flex items-center">
+                <i class="fas fa-phone-alt mr-2"></i> Appelez-nous!
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-orange-50 rounded-l-full opacity-50"></div>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <span class="bg-orange-100 text-orange-700 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 inline-block">
+                    ☀️ Partenaire de votre santé
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6">
+                    Voyagez avec le <span class="text-orange-500">sourire</span> et sérénité.
+                </h1>
+                <p class="text-slate-600 text-xl mb-10 leading-relaxed">
+                    Taxi conventionné CPAM à Paris et IDF. Nous vous accompagnons avec bienveillance pour vos soins ou vos trajets personnels.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#simulateur" class="btn-sunny text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-orange-200">Réserver mon trajet</a>
+                    <div class="flex items-center space-x-3 px-6 py-4 rounded-2xl bg-white border border-orange-100 shadow-sm">
+                        <i class="fas fa-shield-heart text-orange-500 text-2xl"></i>
+                        <span class="font-bold text-slate-700">Agrée CPAM</span>
+                    </div>
+                </div>
+            </div>
+            <span class="slider">
+                 <img src=".\src\1.jpg">
+                 <img src=".\src\2.jpg" >
+                 <img src=".\src\3.jpg" >
+                 <img src=".\src\4.jpg" >
+                 <img src=".\src\5.jpg" >
+                 <img src=".\src\6.jpg" >
+                 <img src=".\src\7.jpg" >
+                 <img src=".\src\8.jpg" >
+                 <img src=".\src\9.jpg" >
+                 <img src=".\src\10.jpg" >
+                 <img src=".\src\11.jpg" >
+                
+            </span>
+
+            <script>
+                const images = document.querySelectorAll(".slider img");
+                let index = 0;
+
+                setInterval(() => {
+                    images[index].classList.remove("active");
+                    index = (index + 1) % images.length;
+                    images[index].classList.add("active");
+                }, 3000); // Change d'image toutes les 3 secondes
+            </script>
+        </div>
+    </section>
+
+    <section class="py-20 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-4">Nos Services de Proximité</h2>
+            <div class="w-24 h-2 bg-orange-400 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-orange-50 hover:border-orange-200 transition-all group" data-aos="fade-up">
+                <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 text-3xl mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <i class="fas fa-notes-medical"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 italic">Transport Médical</h3>
+                <p class="text-slate-500 mb-6">Agrée par la CPAM. Idéal pour vos rendez-vous récurrents (Dialyse, ALD). Nous gérons la partie administrative pour vous.</p>
+                <span class="text-orange-600 font-bold text-sm uppercase tracking-widest underline">Tiers-Payant Inclus</span>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-orange-50 hover:border-orange-200 transition-all group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-3xl mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 italic">Trajets Quotidiens</h3>
+                <p class="text-slate-500 mb-6">Gares, Aéroports ou sorties privées. Un service ponctuel avec des véhicules propres et confortables partout en IDF.</p>
+                <span class="text-amber-600 font-bold text-sm uppercase tracking-widest underline">Paris & Banlieue</span>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-orange-50 hover:border-orange-200 transition-all group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center text-yellow-600 text-3xl mb-6 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 italic">Mise à Disposition</h3>
+                <p class="text-slate-500 mb-6">Louez un véhicule avec chauffeur pour quelques heures ou la journée entière pour vos événements ou circuits.</p>
+                <span class="text-yellow-600 font-bold text-sm uppercase tracking-widest underline">Service Premium</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulateur" class="py-24 bg-solar relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden">
+                <div class="p-8 md:p-12">
+                    <div id="step-1">
+                        <h2 class="text-3xl font-black text-slate-900 mb-8 text-center uppercase tracking-tighter">Calculer mon prix ☀️</h2>
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <label class="block text-sm font-bold text-orange-600 mb-2">DÉPART</label>
+                                <input type="text" id="dep" placeholder="Adresse ou Ville" class="w-full p-4 bg-orange-50/50 rounded-2xl border-2 border-transparent focus:border-orange-400 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-orange-600 mb-2">ARRIVÉE</label>
+                                <input type="text" id="arr" placeholder="Hôpital ou Adresse" class="w-full p-4 bg-orange-50/50 rounded-2xl border-2 border-transparent focus:border-orange-400 outline-none">
+                            </div>
+                        </div>
+                        <button onclick="estimer()" class="w-full btn-sunny text-white py-5 rounded-2xl font-black text-xl shadow-xl uppercase">Estimer mon trajet</button>
+                    </div>
+
+                    <div id="booking-form" class="mt-8 pt-8 border-t border-orange-100 animate-fade-in">
+                        <div class="bg-orange-50 p-6 rounded-3xl mb-8 flex justify-between items-center">
+                            <div>
+                                <p class="text-orange-800 font-bold">Estimation Basse :</p>
+                                <span id="prix-affiché" class="text-4xl font-black text-orange-600">0.00 €</span>
+                            </div>
+                            <i class="fas fa-check-circle text-orange-500 text-4xl"></i>
+                        </div>
+
+                        <form class="grid md:grid-cols-2 gap-6" id="taxiForm">
+                            <input type="text" placeholder="Votre Nom" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="nom" required>
+                            <input type="email" placeholder="Votre Téléphone" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="email" required>
+                            <input type="tel" placeholder="Votre Téléphone" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="tel" required>
+                            <input type="datetime-local" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="date" required>
+                            <select class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400 font-bold text-orange-700" id="prest" required>
+                                <option>Transport Médical (Agrée CPAM)</option>
+                                <option>Course Classique</option>
+                                <option>Mise à disposition</option>
+                            </select>
+                            <input type="text" placeholder="Adresse de depart" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="dep" required>
+                            <input type="text" placeholder="Adresse de l'arrivée" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="arv" required>
+                            <button type="submit" class="md:col-span-2 bg-slate-900 text-white py-5 rounded-2xl font-black text-xl hover:bg-orange-600 transition-all uppercase shadow-2xl">
+                                Valider la réservation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center border-t border-orange-50">
+        <p class="text-slate-400 font-medium">© 2026 TaxiSanté Paris - Transport Agréé CPAM & Services de Luxe</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800 });
+
+        function estimer() {
+            const d = document.getElementById('dep').value;
+            const a = document.getElementById('arr').value;
+            if(!d || !a) return alert("Précisez votre itinéraire ☀️");
+
+            const prix = 4.40 + (Math.floor(Math.random() * 20) + 10) * 1.35;
+            document.getElementById('prix-affiché').innerText = prix.toFixed(2) + " €";
+            
+            const form = document.getElementById('booking-form');
+            form.style.display = "block";
+            form.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('step-1').style.opacity = "0.4";
+        }
+
+        document.getElementById("taxiForm").addEventListener("submit", async function(e){
+            e.preventDefault();
+
+            const data = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                tel: document.getElementById("tel").value,
+                depart: document.getElementById("dep").value,
+                arrivee: document.getElementById("arv").value,
+                arrivee: document.getElementById("prest").value,
+                date: document.getElementById("date").value
+            };
+
+            const response = await fetch("/sendReservation", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.text();
+            alert(result);
+        });
+
+        
+
+        document.getElementById("taxiForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            emailjs.sendForm("service_2ogsihj","template_1n3q2v8", this)
+                .then(() => {
+                    alert("Réservation envoyée automatiquement !");
+                }, (error) => {
+                    alert("Erreur : " + JSON.stringify(error));
+                });
+        });
+</script>
+
+ 
+</body>
+</html>
