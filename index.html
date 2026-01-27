@@ -7,10 +7,40 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+        <script>
+            (function() {
+                emailjs.init("fD4JV_R82aa5DS3cJ"); // <-- Remplace par ton public key
+            })();
+        </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        
+
+        span.slider {
+        display: inline-block;
+        width: 300px;       /* largeur du slider */
+        height: 200px;      /* hauteur du slider */
+        overflow: hidden;
+        position: relative;
+        border-radius: 10px;
+        }
+
+        span.slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        span.slider img.active {
+            opacity: 1;
+        }
+            
         /* Palette Solaire */
         .bg-solar { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); }
         .bg-warm-light { background: #fffdfa; }
@@ -37,7 +67,7 @@
                 </div>
                 <span class="text-2xl font-black text-slate-900 tracking-tighter">ÉtoileTaxi<span class="text-orange-500">Paris</span></span>
             </div>
-            <a href="tel:01XXXXXXXX" class="btn-sunny text-white px-6 py-2.5 rounded-full font-bold shadow-lg flex items-center">
+            <a href="tel:0185790202" class="btn-sunny text-white px-6 py-2.5 rounded-full font-bold shadow-lg flex items-center">
                 <i class="fas fa-phone-alt mr-2"></i> Appelez-nous!
             </a>
         </div>
@@ -64,9 +94,31 @@
                     </div>
                 </div>
             </div>
-            <div class="relative" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1494515426402-f1980ca7a41d?auto=format&fit=crop&q=80&w=800" alt="Chauffeur souriant" class="rounded-[3rem] shadow-2xl border-8 border-white">
-            </div>
+            <span class="slider">
+                 <img src=".\src\1.jpg">
+                 <img src=".\src\2.jpg" >
+                 <img src=".\src\3.jpg" >
+                 <img src=".\src\4.jpg" >
+                 <img src=".\src\5.jpg" >
+                 <img src=".\src\6.jpg" >
+                 <img src=".\src\7.jpg" >
+                 <img src=".\src\8.jpg" >
+                 <img src=".\src\9.jpg" >
+                 <img src=".\src\10.jpg" >
+                 <img src=".\src\11.jpg" >
+                
+            </span>
+
+            <script>
+                const images = document.querySelectorAll(".slider img");
+                let index = 0;
+
+                setInterval(() => {
+                    images[index].classList.remove("active");
+                    index = (index + 1) % images.length;
+                    images[index].classList.add("active");
+                }, 3000); // Change d'image toutes les 3 secondes
+            </script>
         </div>
     </section>
 
@@ -134,16 +186,19 @@
                             <i class="fas fa-check-circle text-orange-500 text-4xl"></i>
                         </div>
 
-                        <form class="grid md:grid-cols-2 gap-6">
-                            <input type="text" placeholder="Votre Nom" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400">
-                            <input type="tel" placeholder="Votre Téléphone" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400">
-                            <input type="datetime-local" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400">
-                            <select class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400 font-bold text-orange-700">
+                        <form class="grid md:grid-cols-2 gap-6" id="taxiForm">
+                            <input type="text" placeholder="Votre Nom" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="nom" required>
+                            <input type="email" placeholder="Votre Téléphone" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="email" required>
+                            <input type="tel" placeholder="Votre Téléphone" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="tel" required>
+                            <input type="datetime-local" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="date" required>
+                            <select class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400 font-bold text-orange-700" id="prest" required>
                                 <option>Transport Médical (Agrée CPAM)</option>
                                 <option>Course Classique</option>
                                 <option>Mise à disposition</option>
                             </select>
-                            <button type="button" onclick="alert('Merci ! Nous confirmons votre trajet par SMS.')" class="md:col-span-2 bg-slate-900 text-white py-5 rounded-2xl font-black text-xl hover:bg-orange-600 transition-all uppercase shadow-2xl">
+                            <input type="text" placeholder="Adresse de depart" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="dep" required>
+                            <input type="text" placeholder="Adresse de l'arrivée" class="w-full p-4 bg-white border border-orange-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400" id="arv" required>
+                            <button type="submit" class="md:col-span-2 bg-slate-900 text-white py-5 rounded-2xl font-black text-xl hover:bg-orange-600 transition-all uppercase shadow-2xl">
                                 Valider la réservation
                             </button>
                         </form>
@@ -174,6 +229,44 @@
             form.scrollIntoView({ behavior: 'smooth' });
             document.getElementById('step-1').style.opacity = "0.4";
         }
-    </script>
+
+        document.getElementById("taxiForm").addEventListener("submit", async function(e){
+            e.preventDefault();
+
+            const data = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                tel: document.getElementById("tel").value,
+                depart: document.getElementById("dep").value,
+                arrivee: document.getElementById("arv").value,
+                arrivee: document.getElementById("prest").value,
+                date: document.getElementById("date").value
+            };
+
+            const response = await fetch("/sendReservation", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.text();
+            alert(result);
+        });
+
+        
+
+        document.getElementById("taxiForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            emailjs.sendForm("service_2ogsihj","template_1n3q2v8", this)
+                .then(() => {
+                    alert("Réservation envoyée automatiquement !");
+                }, (error) => {
+                    alert("Erreur : " + JSON.stringify(error));
+                });
+        });
+</script>
+
+ 
 </body>
 </html>
